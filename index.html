@@ -8,13 +8,35 @@
         div {
             box-shadow: 3px 3px 3px black;
         }
+        #contenedor {
+            background-color: beige;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        #contenedor div {
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        img {
+            width: 200px;
+        }
+        #tabla-jugadores, #tabla-jugadores td, th {
+            border: 2px solid purple;
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body>
     <h1>Jugadores del Real Madrid</h1>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A151268108&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/ramosalah" title="Ramosalah" target="_blank" style="color: #cccccc; text-decoration: none;">Ramosalah</a> · <a href="https://soundcloud.com/ramosalah/hala-madrid" title="&#x27;Hala Madrid Y Nada Más&#x27; - La Canción De La Décima - El Nuevo Himno Del Real Madrid" target="_blank" style="color: #cccccc; text-decoration: none;">&#x27;Hala Madrid Y Nada Más&#x27; - La Canción De La Décima - El Nuevo Himno Del Real Madrid</a></div>
     <div id="contenedor">
 
     </div>
+    <table id="tabla-jugadores">
+
+    </table>
     <script>
         let Jugadores = [{
             nombre:"Mbappe",
@@ -38,28 +60,58 @@
             edad:53,
             foto:"zidane.jpeg",
             ficha:4000000
-            }
+            }   
         ]
         for ( let i=0;i<Jugadores.length;i++ ){
-            //Jugador = Jugadores[i];
-            nombreJugador = Jugadores[i].nombre;
-            edadJugador = Jugadores[i].edad;
-            fichaJugador = Jugadores[i].ficha;
-            fotoJugador = Jugadores[i].foto;
-            nuevaCaja = document.createElement("div");
-            nuevoH1 = document.createElement("h1");
+            let nombreJugador = Jugadores[i].nombre;
+            let edadJugador = Jugadores[i].edad;
+            let fichaJugador = Jugadores[i].ficha;
+            let fotoJugador = Jugadores[i].foto;
+            let nuevaCaja = document.createElement("div");
+            let nuevoH1 = document.createElement("h1");
             nuevoH1.innerHTML=nombreJugador;
             nuevaCaja.appendChild(nuevoH1);
-            nuevoH2=document.createElement("h2")
+            let nuevoH2=document.createElement("h2")
             nuevoH2.innerHTML="Edad: " + edadJugador;
             nuevaCaja.appendChild(nuevoH2);
-            nuevoH3=document.createElement("h3")
+            let nuevoH3=document.createElement("h3")
             nuevoH3.innerHTML="Ficha: " + fichaJugador;
             nuevaCaja.appendChild(nuevoH3);
-            nuevaFoto = document.createElement("img")
+            let nuevaFoto = document.createElement("img")
             nuevaFoto.src = fotoJugador;
             nuevaCaja.appendChild(nuevaFoto);
             document.getElementById("contenedor").appendChild(nuevaCaja);
+        }
+            let nuevoTRCabecera = document.createElement("tr");
+
+            let cabeceraNombre = document.createElement("th");
+            cabeceraNombre.innerHTML = "Nombre";
+            nuevoTRCabecera.appendChild(cabeceraNombre);
+
+            document.getElementById("tabla-jugadores").appendChild(nuevoTRCabecera);
+        for (let jugador of Jugadores){
+            let nuevoTR = document.createElement("tr");
+
+            let tdNombre = document.createElement("td");
+            tdNombre.innerHTML = jugador.nombre;
+            nuevoTR.appendChild(tdNombre);
+
+            let tdEdad = document.createElement("td");
+            tdEdad.innerHTML = jugador.edad;
+            nuevoTR.appendChild(tdEdad);
+
+            let tdFicha = document.createElement("td");
+            tdFicha.innerHTML = jugador.ficha;
+            nuevoTR.appendChild(tdFicha);
+
+
+            let tdImagen = document.createElement("td");
+            let nuevaFoto = document.createElement("img");
+            nuevaFoto.src = jugador.foto;
+            tdImagen.appendChild(nuevaFoto)
+            nuevoTR.appendChild(tdImagen);
+
+            document.getElementById("tabla-jugadores").appendChild(nuevoTR);
         }
     </script>
 </body>
